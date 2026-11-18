@@ -1,0 +1,92 @@
+{
+  "title": "Elige el mundo visual de Callejón Store",
+  "question": "El sorteo asignó El Perchero. Quédate con él, elige otra opción o pide otra mano.",
+  "options": [
+    {
+      "id": "assigned", "kind": "assigned", "label": "El Perchero", "kicker": "THE ROLL",
+      "lineage": "El propio local: techo negro, pared gris y percheros de madera",
+      "thesis": "La página es la pared del local: la ropa cuelga de verdad y cada prenda se pide por WhatsApp.",
+      "palette": ["#0b0b0b", "#8c8f94", "#c9a36a", "#ffffff"],
+      "materials": ["techo negro con spots", "pared gris", "perchas de madera"],
+      "viewport": "Techo negro con el menú y tres spots, titular gigante pintado sobre la pared y un riel con prendas colgadas.",
+      "risk": "Sin fotos de producto las prendas son siluetas hasta que lleguen las reales.",
+      "raised": [
+        {"from": "Sukeban long skirt code", "raise": "Cada prenda del riel lleva su etiqueta con línea de llamada y su botón de pedir por WhatsApp."},
+        {"from": "Variable font specimen", "raise": "El titular se pinta en una sola cara gigante con escala brutal, sin adornos."}
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html"
+    },
+    {
+      "id": "model-pick", "kind": "pick", "label": "Lo Nuevo (drop)", "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Cultura de lanzamientos y tiendas streetwear",
+      "thesis": "Cada colección sale como un drop: números, etiquetas fluorescentes y letras que gritan.",
+      "palette": ["#0a0a0a", "#ffffff", "#d7ff3a"],
+      "materials": ["negro mate", "etiquetas volt", "tipografía condensada"],
+      "viewport": "LO NUEVO a 330px, una cuadrícula de piezas numeradas y botón de WhatsApp.",
+      "risk": "Es el streetwear que más se ve; sin fotos buenas se parece a cualquier tienda.",
+      "html": ".impeccable/mocks/decision/pick.html"
+    },
+    {
+      "id": "challenger-sukeban", "kind": "challenger", "catalogId": "pop-culture-shelf-sukeban-long-skirt-code",
+      "label": "La Pinta Completa", "verdict": "competitive",
+      "lineage": "Códigos de vestir de subculturas, prendas anotadas con líneas de llamada",
+      "thesis": "Una pinta completa de pie, con cada prenda señalada: gorra, camiseta, jean y tenis.",
+      "palette": ["#101a33", "#ffffff", "#2b3d6b"],
+      "materials": ["azul noche", "algodón blanco", "líneas de llamada"],
+      "viewport": "Titular a la izquierda y la figura anotada a la derecha con botón Arma tu pinta.",
+      "case": "Gana en identificación del joven urbano; pierde en claridad si falta foto de modelo.",
+      "risk": "Necesita fotos de una pinta real o dibujos buenos.",
+      "html": ".impeccable/mocks/decision/dress.html",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-sukeban-long-skirt-code-hero.webp"
+    },
+    {
+      "id": "challenger-specimen", "kind": "challenger", "catalogId": "variable-font-specimen",
+      "label": "Abecedario CS", "verdict": "competitive",
+      "lineage": "Muestrarios tipográficos interactivos",
+      "thesis": "Las letras CS gigantes cambian de peso al arrastrar un control, como una marca de moda.",
+      "palette": ["#f2f2ee", "#0a0a0a"],
+      "materials": ["papel claro", "tinta negra", "mono para datos"],
+      "viewport": "CS Aa a 520px y un slider de peso con lectura en monoespaciada.",
+      "case": "Memorable y barato de construir; pierde en claridad porque no vende ropa a primera vista.",
+      "risk": "Lo más editorial; menos callejero.",
+      "html": ".impeccable/mocks/decision/spec.html",
+      "hero": "https://impeccable.style/worlds/cards/variable-font-specimen-hero.webp"
+    },
+    {
+      "id": "challenger-nixie", "kind": "challenger", "catalogId": "signals-instruments-nixie-laboratory-counter",
+      "label": "Contador Nixie", "verdict": "declined", "lineage": "Tubos nixie de laboratorio",
+      "palette": ["#0b0b0b", "#ff7a1a"], "materials": ["vidrio", "acero negro"],
+      "case": "Los tubos no dicen ropa y el público no se identifica.", "kept": "Un solo acento cálido y total compromiso con el negro."
+    },
+    {
+      "id": "challenger-bazaar", "kind": "challenger", "catalogId": "dream-surreal-impossible-worlds-moon-shadow-bazaar",
+      "label": "Bazar de Sombras", "verdict": "declined", "lineage": "Bazar lunar surreal",
+      "palette": ["#0d1426", "#e0b24a"], "materials": ["lona", "azul medianoche"],
+      "case": "Es fantasía; aleja a un cliente que busca ropa urbana.", "kept": "Las etiquetas de precio como tickets."
+    },
+    {
+      "id": "challenger-chroma", "kind": "challenger", "catalogId": "reefs-bioluminescent-nocturnal-chromatophore-skin-language",
+      "label": "Piel de Cefalópodo", "verdict": "declined", "lineage": "Pantalla viva de piel animal",
+      "palette": ["#efe6d6", "#7a3b2e"], "materials": ["crema", "cromatóforos"],
+      "case": "Orgánico y delicado; choca con el cliente y el local.", "kept": "Patrones que cambian con el contexto."
+    },
+    {
+      "id": "challenger-otome", "kind": "challenger", "catalogId": "digital-design-canon-otome-choice-frame",
+      "label": "Marco de Elecciones", "verdict": "declined", "lineage": "Videojuego romántico japonés",
+      "palette": ["#f3d6dc", "#fff4e8"], "materials": ["rosa", "marco con volutas"],
+      "case": "Estética romántica que no encaja con el público masculino urbano.", "kept": "Elegir entre tarjetas como un acto claro."
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "canon": true,
+  "canonCard": {
+    "kind": "canon", "label": "El estándar de tienda online",
+    "thesis": "Una tienda limpia como la de Quality Shop: hero, categorías y productos en cuadrícula.",
+    "palette": ["#ffffff", "#111111", "#e5e5e5"], "materials": ["cuadrícula limpia", "fotografía de producto"],
+    "viewport": "Portada oscura con titular y fila de productos.",
+    "risk": "Se confunde con cualquier tienda de ropa.",
+    "html": ".impeccable/mocks/decision/canon.html"
+  },
+  "steer": true,
+  "buildPath": { "value": "code", "toggle": false }
+}
