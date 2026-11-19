@@ -38,7 +38,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .logo-mark { display: inline-block; flex: none; width: 48px; height: 48px; background-size: 100px; background-position: -24px -27px; background-repeat: no-repeat; clip-path: polygon(50% 0, 100% 24%, 100% 76%, 50% 100%, 0 76%, 0 24%); }
 
 /* tipografía */
-h1, h2, .steps__n, .cats__name {
+h1, h2, .steps__n {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
@@ -125,31 +125,8 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: 0.005em; }
 
 /* categorías */
 .cats-title { font-family: 'UnifrakturCook', 'Old English Text MT', serif; font-weight: 700; text-transform: none; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1; }
-.cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
-.cats li:first-child { grid-column: span 2; }
-.cats a { position: relative; display: flex; flex-direction: column; justify-content: space-between; height: clamp(200px, 22vw, 320px); padding: 18px; overflow: hidden; }
-.cats__img { position: absolute; inset: 0; background-repeat: no-repeat; filter: grayscale(1) contrast(1.1); transition: transform 0.9s var(--ease), filter 0.5s; }
-.cats a::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2) 60%); transition: opacity 0.4s; }
-.cats a > span:not(.cats__img), .cats a > span:not(.cats__img) > span { position: relative; z-index: 2; }
-.cats__n { font-size: 12px; letter-spacing: 0.12em; }
-.cats__name { text-transform: none; font-family: 'UnifrakturCook', 'Old English Text MT', serif; font-weight: 700; font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1; }
-.cats__go { align-self: flex-start; margin-top: 12px; font-size: 13px; font-weight: 500; background: var(--paper); color: var(--ink); padding: 7px 16px; border-radius: 99px; transform: translateY(8px); opacity: 0; transition: 0.35s var(--ease); }
-.cats a:hover .cats__img { transform: scale(1.07); filter: grayscale(0.2) contrast(1.1); }
-.cats a:hover .cats__go { opacity: 1; transform: none; }
-@media (hover: none) { .cats__go { opacity: 1; transform: none; } }
-@media (max-width: 900px) { .cats { grid-template-columns: repeat(2, 1fr); } .cats a { height: clamp(170px, 38vw, 260px); } }
 
 /* conjuntos: buzo arriba + pantaloneta abajo */
-.conj { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.conj__card { --h: clamp(150px, 16vw, 250px); position: relative; background: var(--paper); border: 1px solid var(--line); padding: 10px 10px 16px; display: flex; flex-direction: column; gap: 4px; }
-.conj__ph { position: relative; height: var(--h); background-repeat: no-repeat; filter: grayscale(1) contrast(1.1); overflow: hidden; }
-.conj__ph em { position: absolute; z-index: 1; left: 8px; bottom: 8px; font-style: normal; font-size: 10px; letter-spacing: 0.12em; background: var(--paper); color: var(--ink); padding: 3px 9px; border-radius: 99px; font-weight: 500; }
-.conj__plus { position: absolute; z-index: 2; left: 50%; top: calc(var(--h) - 4px); transform: translateX(-50%); width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-size: 18px; line-height: 1; }
-.conj__name { font-family: 'UnifrakturCook', 'Old English Text MT', serif; font-weight: 700; font-size: clamp(1.7rem, 2.4vw, 2.2rem); line-height: 1.1; margin-top: 10px; text-transform: none; }
-.conj__add { align-self: flex-start; margin-top: 6px; background: var(--ink); color: var(--paper); border-radius: 99px; padding: 9px 20px; font-size: 13px; font-weight: 500; transition: transform 0.25s var(--ease), background 0.25s; }
-.conj__add:hover { background: #2a2a2a; }
-.conj__add:active { transform: scale(0.96); }
-@media (max-width: 900px) { .conj { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
 
 /* marca */
 .brand { background: #f3f3f1; color: var(--ink); overflow: hidden; }
@@ -401,10 +378,6 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: 0.005em; }
 .hero .btn--ghost:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 @media (hover: hover) { .hero .btn--light:hover { background: var(--accent-soft); } }
 .tape--a { background: var(--accent); color: var(--paper); }
-.cats__go { background: var(--accent); }
-.cats__n { color: var(--accent); }
-.conj__plus { background: var(--accent); color: var(--paper); }
-.conj__add:hover { background: var(--accent); color: var(--paper); }
 .brand__sticker { border-color: var(--accent); }
 .buy__n { color: var(--accent); }
 .chat .out { background: var(--accent); color: var(--paper); }
@@ -428,4 +401,46 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: 0.005em; }
 .l3d__layer--back { transform: translateZ(var(--z)) rotateY(180deg); }
 .l3d__layer--back::after { display: none; }
 
-.cats__go { color: var(--paper); }
+
+/* categorías: paneles que se abren (fotos a color) */
+.acc { display: flex; gap: 4px; height: clamp(420px, 62vh, 580px); }
+.acc__item { position: relative; flex: 1; min-width: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; background-repeat: no-repeat; background-size: auto 250%; filter: brightness(0.55) saturate(1.05); transition: flex 0.6s var(--ease), filter 0.5s; }
+.acc__item::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 55%); }
+.acc__item > * { position: relative; }
+.acc__item.is-on { flex: 7; filter: none; }
+.acc__n { position: absolute; top: 14px; left: 18px; font-size: 12px; letter-spacing: 0.12em; color: var(--accent-soft); }
+.acc__name { text-transform: none; font-family: 'UnifrakturCook', 'Old English Text MT', serif; font-weight: 700; line-height: 1; white-space: nowrap; font-size: 1.7rem; writing-mode: vertical-rl; transform: rotate(180deg); align-self: flex-start; }
+.acc__item.is-on .acc__name { writing-mode: horizontal-tb; transform: none; font-size: clamp(2.2rem, 3.6vw, 3.4rem); }
+.acc__go { display: none; align-self: flex-start; margin-top: 12px; font-size: 13px; font-weight: 500; background: var(--accent); color: var(--paper); border-radius: 99px; padding: 8px 18px; }
+.acc__item.is-on .acc__go { display: inline-block; }
+@media (max-width: 900px) {
+  .acc { flex-direction: column; height: auto; }
+  .acc__item { flex: none; height: 76px; justify-content: center; background-size: cover; transition: height 0.5s var(--ease), filter 0.5s; }
+  .acc__item.is-on { height: 300px; justify-content: flex-end; }
+  .acc__name, .acc__item.is-on .acc__name { writing-mode: horizontal-tb; transform: none; font-size: 2rem; align-self: auto; }
+  .acc__item:not(.is-on) .acc__n { top: 12px; }
+}
+
+/* conjuntos: tarjetas con la foto del conjunto completo (a color) */
+.cj { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.cj__card { position: relative; height: clamp(380px, 38vw, 520px); display: flex; flex-direction: column; justify-content: space-between; padding: 14px; overflow: hidden; background-repeat: no-repeat; background-size: auto 270%; }
+.cj__card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.05) 62%); }
+.cj__card > * { position: relative; }
+.cj__price { align-self: flex-start; background: var(--accent); color: var(--paper); font-style: normal; font-size: 12px; font-weight: 600; padding: 4px 11px; border-radius: 99px; }
+.cj__name { font-family: 'UnifrakturCook', 'Old English Text MT', serif; font-weight: 700; text-transform: none; font-size: clamp(1.9rem, 2.6vw, 2.4rem); line-height: 1; }
+.cj__incl { margin: 6px 0 12px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #cfcfcf; }
+.cj__add { background: var(--accent); color: var(--paper); border-radius: 99px; padding: 10px 20px; font-size: 13px; font-weight: 500; transition: background 0.25s, transform 0.25s var(--ease); }
+.cj__add:hover { background: var(--accent-soft); }
+.cj__add:active { transform: scale(0.96); }
+.conjuntos { border-top: 1px solid var(--line-d); }
+@media (max-width: 900px) { .cj { grid-template-columns: repeat(2, 1fr); } .cj__card { height: clamp(300px, 70vw, 420px); } }
+
+/* la marca: fondo rojo de la marca y foto a color */
+.brand { --brand-bg: #8c0f16; background: var(--brand-bg); color: var(--paper); }
+.brand__photo img { filter: saturate(1.08) contrast(1.04); }
+.brand__photo { border-color: rgba(0, 0, 0, 0.15); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+.brand .idx { color: var(--paper); opacity: 0.85; }
+.brand__lead { color: rgba(255, 255, 255, 0.92); }
+.brand__facts { color: rgba(255, 255, 255, 0.9); }
+.brand__facts b { color: var(--paper); }
+.brand__sticker { border-color: var(--paper); }

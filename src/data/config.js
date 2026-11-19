@@ -35,13 +35,13 @@ export const CATEGORIES = [
   'Deportivo',
 ]
 
-// TODO: reemplazar por los conjuntos reales (nombre y foto). Las fotos son recortes del local.
-// buzo = recorte de arriba, pantaloneta = recorte de abajo
+// TODO: reemplazar por los conjuntos reales (nombre, precio y una foto del conjunto completo).
+// Por ahora la foto es un recorte de la foto del local (pos = posición del recorte).
 export const CONJUNTOS = [
-  { title: 'Conjunto 01', buzo: '81% 57%', pantaloneta: '100% 82%' },
-  { title: 'Conjunto 02', buzo: '70% 40%', pantaloneta: '40% 88%' },
-  { title: 'Conjunto 03', buzo: '3% 38%', pantaloneta: '11% 91%' },
-  { title: 'Conjunto 04', buzo: '50% 55%', pantaloneta: '8% 28%' },
+  { title: 'Conjunto 01', price: 180000, pos: '81% 57%' },
+  { title: 'Conjunto 02', price: 180000, pos: '70% 40%' },
+  { title: 'Conjunto 03', price: 180000, pos: '3% 38%' },
+  { title: 'Conjunto 04', price: 180000, pos: '50% 55%' },
 ]
 
 export const STEPS = [

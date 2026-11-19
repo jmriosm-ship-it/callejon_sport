@@ -778,6 +778,178 @@ function KD() {
   )
 }
 
+// Categorías (nuevas ideas, sin fila suelta)
+// S-A: bento que llena todo el espacio
+function SA() {
+  return (
+    <section className="vs vsa">
+      <p className="idx">(01) Colección</p>
+      <h2 style={gothic}>Compra por categoría</h2>
+      <div className="vsa__grid">
+        {CATS.map(([n, pos], i) => (
+          <a key={n} className={`t${i}`} style={ph(pos, i === 0 ? 230 : i === 7 ? 260 : 340)}>
+            <small>{String(i + 1).padStart(2, '0')}</small>
+            <b style={gothic}>{n}</b>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// S-B: paneles que se expanden (acordeón horizontal)
+function SB() {
+  return (
+    <section className="vs vsb">
+      <div className="vsb__head"><p className="idx">(01) Colección</p><h2 style={gothic}>Compra por categoría</h2></div>
+      <div className="vsb__row">
+        {CATS.map(([n, pos], i) => (
+          <a key={n} className={i === 1 ? 'on' : ''} style={ph(pos, 420)}>
+            <small>{String(i + 1).padStart(2, '0')}</small>
+            <b style={gothic}>{n}</b>
+            <i>Comprar →</i>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// S-C: stickers redondos con borde, como una pared pegada
+function SC() {
+  return (
+    <section className="vs vsc">
+      <p className="idx">(01) Colección</p>
+      <h2 style={gothic}>Compra por categoría</h2>
+      <div className="vsc__grid">
+        {CATS.map(([n, pos], i) => (
+          <a key={n} style={{ '--r': `${[-4, 3, -2, 4, -3, 2, -4, 3][i]}deg` }}>
+            <span style={ph(pos, 520)} />
+            <b>{n}</b>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// S-D: dos tiras de tarjetas que se deslizan en sentidos opuestos
+function SD() {
+  const row = (rev) => (
+    <div className={`vsd__row ${rev ? 'rev' : ''}`}>
+      <div>
+        {[...CATS, ...CATS].map(([n, pos], i) => (
+          <a key={i} style={ph(pos, 420)}><b style={gothic}>{n}</b><i>Comprar →</i></a>
+        ))}
+      </div>
+    </div>
+  )
+  return (
+    <section className="vs vsd">
+      <p className="idx">(01) Colección</p>
+      <h2 style={gothic}>Compra por categoría</h2>
+      {row(false)}
+      {row(true)}
+    </section>
+  )
+}
+
+// Conjuntos: nuevas ideas (fotos a color)
+const QC_ = [
+  ['Conjunto 01', '81% 57%', '100% 82%'],
+  ['Conjunto 02', '70% 40%', '40% 88%'],
+  ['Conjunto 03', '3% 38%', '11% 91%'],
+  ['Conjunto 04', '50% 55%', '8% 28%'],
+]
+const QSizes = ({ label, on = 'M' }) => (
+  <div className="vq__sz"><small>{label}</small>{['S', 'M', 'L', 'XL'].map((s) => <span key={s} className={s === on ? 'on' : ''}>{s}</span>)}</div>
+)
+
+// Q-A: foto con puntos sobre cada prenda y tallas separadas
+function QA() {
+  return (
+    <section className="vq vqa">
+      <div className="vqa__photo" style={ph('70% 45%', 260)}>
+        <span className="vqa__pin" style={{ left: '48%', top: '30%' }}><i>+</i><b>Buzo</b></span>
+        <span className="vqa__pin" style={{ left: '52%', top: '72%' }}><i>+</i><b>Pantaloneta</b></span>
+      </div>
+      <div className="vqa__info">
+        <p className="idx">(02) Conjuntos</p>
+        <h1 style={gothic}>Conjunto 02</h1>
+        <p className="vq__price">$ 180.000</p>
+        <QSizes label="BUZO" on="M" />
+        <QSizes label="PANTALONETA" on="L" />
+        <a className="vq__btn">Agregar conjunto</a>
+        <div className="vqa__more">{QC_.map(([n, a], i) => <span key={n} className={i === 1 ? 'on' : ''} style={ph(a, 420)} />)}</div>
+      </div>
+    </section>
+  )
+}
+
+// Q-B: cada tarjeta partida en diagonal, buzo arriba y pantaloneta abajo
+function QB() {
+  return (
+    <section className="vq vqb">
+      <p className="idx">(02) Conjuntos</p>
+      <h2 style={gothic}>Buzo y pantaloneta, listos para usar</h2>
+      <div className="vqb__grid">
+        {QC_.map(([n, a, b]) => (
+          <article key={n}>
+            <div className="vqb__ph">
+              <span className="vqb__a" style={ph(a, 380)} />
+              <span className="vqb__b" style={ph(b, 380)} />
+              <svg className="vqb__line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="100" y1="0" x2="0" y2="100" stroke="#e5322d" strokeWidth="3" vectorEffect="non-scaling-stroke" /></svg>
+              <em className="vqb__l1">BUZO</em><em className="vqb__l2">PANTALONETA</em>
+            </div>
+            <b style={gothic}>{n}</b>
+            <span>$ 180.000</span>
+            <a className="vq__btn vq__btn--sm">Agregar +</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// Q-C: tarjetas oscuras con foto grande y las dos prendas como miniaturas
+function QC() {
+  return (
+    <section className="vq vqc">
+      <p className="idx">(02) Conjuntos</p>
+      <h2 style={gothic}>Buzo y pantaloneta, listos para usar</h2>
+      <div className="vqc__grid">
+        {QC_.map(([n, a, b]) => (
+          <article key={n} style={ph(a, 330)}>
+            <i className="vqc__price">$ 180.000</i>
+            <div>
+              <b style={gothic}>{n}</b>
+              <div className="vqc__incl"><span style={ph(a, 460)} /><em>+</em><span style={ph(b, 460)} /><small>Buzo + pantaloneta</small></div>
+              <a className="vq__btn vq__btn--sm">Agregar +</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// Q-D: carrusel con las dos prendas lado a lado
+function QD() {
+  return (
+    <section className="vq vqd">
+      <div className="vqd__head"><div><p className="idx">(02) Conjuntos</p><h2 style={gothic}>Buzo y pantaloneta</h2></div><div className="vqd__nav"><span>←</span><b>01 / 04</b><span>→</span></div></div>
+      <div className="vqd__row">
+        {QC_.slice(0, 3).map(([n, a, b], i) => (
+          <article key={n} className={i === 0 ? 'on' : ''}>
+            <div className="vqd__pair"><span style={ph(a, 340)}><em>BUZO</em></span><span style={ph(b, 340)}><em>PANTALONETA</em></span></div>
+            <div className="vqd__txt"><b style={gothic}>{n}</b><span>$ 180.000</span><a className="vq__btn vq__btn--sm">Agregar +</a></div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 export default function Lab({ v }) {
-  return { ka: <KA />, kb: <KB />, kc: <KC />, kd: <KD />, pa: <PA />, pb: <PB />, pc: <PC />, pd: <PD />, a: <A />, b: <B />, c: <C />, d: <D />, ca: <CA />, cb: <CB />, cc: <CC />, cd: <CD />, ja: <JA />, jb: <JB />, jc: <JC />, jd: <JD />, ma: <MA />, mb: <MB />, mc: <MC />, md: <MD />, ha: <HA />, hb: <HB />, hc: <HC />, hd: <HD />, ea: <EA />, eb: <EB />, ec: <EC />, ed: <ED />, va: <VA />, vb: <VB />, vc: <VC />, vd: <VD /> }[v] || <A />
+  return { qa: <QA />, qb: <QB />, qc: <QC />, qd: <QD />, sa: <SA />, sb: <SB />, sc: <SC />, sd: <SD />, ka: <KA />, kb: <KB />, kc: <KC />, kd: <KD />, pa: <PA />, pb: <PB />, pc: <PC />, pd: <PD />, a: <A />, b: <B />, c: <C />, d: <D />, ca: <CA />, cb: <CB />, cc: <CC />, cd: <CD />, ja: <JA />, jb: <JB />, jc: <JC />, jd: <JD />, ma: <MA />, mb: <MB />, mc: <MC />, md: <MD />, ha: <HA />, hb: <HB />, hc: <HC />, hd: <HD />, ea: <EA />, eb: <EB />, ec: <EC />, ed: <ED />, va: <VA />, vb: <VB />, vc: <VC />, vd: <VD /> }[v] || <A />
 }

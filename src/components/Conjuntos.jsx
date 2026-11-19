@@ -1,32 +1,40 @@
 import local from '../assets/local.webp'
 import { CONJUNTOS } from '../data/config'
+import { money } from '../data/products'
 import { useBag } from '../hooks/useBag'
-
-const photo = (pos) => ({ backgroundImage: `url(${local})`, backgroundSize: '360% auto', backgroundPosition: pos })
 
 export default function Conjuntos() {
   const { add } = useBag()
 
   return (
-    <section className="section section--light" id="conjuntos">
+    <section className="section section--dark conjuntos" id="conjuntos">
       <div className="wrap">
         <header className="section__head reveal">
           <div>
             <p className="idx">(02) Conjuntos</p>
             <h2 className="cats-title">Buzo y pantaloneta, listos para usar</h2>
           </div>
-          <a className="btn btn--dark" href="#/categoria/Conjuntos">Ver todos</a>
+          <a className="btn btn--light" href="#/categoria/Conjuntos">Ver todos</a>
         </header>
-        <div className="conj">
+        <div className="cj">
           {CONJUNTOS.map((c, i) => (
-            <article key={c.title} className="conj__card reveal" style={{ '--d': `${i * 80}ms` }}>
-              <div className="conj__ph" style={photo(c.buzo)}><em>BUZO</em></div>
-              <span className="conj__plus" aria-hidden="true">+</span>
-              <div className="conj__ph" style={photo(c.pantaloneta)}><em>PANTALONETA</em></div>
-              <h3 className="conj__name">{c.title}</h3>
-              <button className="conj__add" onClick={() => add(`${c.title} (buzo + pantaloneta)`)} aria-label={`Agregar ${c.title} a la bolsa`}>
-                Agregar +
-              </button>
+            <article
+              key={c.title}
+              className="cj__card reveal"
+              style={{ backgroundImage: `url(${local})`, backgroundPosition: c.pos, '--d': `${i * 80}ms` }}
+            >
+              <i className="cj__price">{money(c.price)}</i>
+              <div>
+                <h3 className="cj__name">{c.title}</h3>
+                <p className="cj__incl">Buzo + pantaloneta</p>
+                <button
+                  className="cj__add"
+                  onClick={() => add(`${c.title} (buzo + pantaloneta)`, c.price)}
+                  aria-label={`Agregar ${c.title} a la bolsa`}
+                >
+                  Agregar +
+                </button>
+              </div>
             </article>
           ))}
         </div>
