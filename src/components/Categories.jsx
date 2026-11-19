@@ -1,5 +1,5 @@
 import local from '../assets/local.webp'
-import { CATEGORIES, CATEGORY_PHOTOS, wa } from '../data/config'
+import { CATEGORIES, CATEGORY_PHOTOS } from '../data/config'
 
 export default function Categories() {
   return (
@@ -10,12 +10,12 @@ export default function Categories() {
             <p className="idx">(01) Colección</p>
             <h2 className="cats-title">Compra por categoría</h2>
           </div>
-          <a className="btn btn--light" href={wa('Hola, quiero ver toda la colección')} target="_blank" rel="noreferrer">Ver todo</a>
+          <a className="btn btn--light" href="#/categoria/Todo">Ver todo</a>
         </header>
         <ul className="cats">
           {CATEGORIES.map((c, i) => (
             <li key={c} className="reveal" style={{ '--d': `${(i % 4) * 70}ms` }}>
-              <a href={wa(`Hola, me interesa ${c.toLowerCase()}`)} target="_blank" rel="noreferrer">
+              <a href={`#/categoria/${encodeURIComponent(c)}`}>
                 <span
                   className="cats__img"
                   style={{ backgroundImage: `url(${local})`, backgroundSize: '300% auto', backgroundPosition: CATEGORY_PHOTOS[c] }}

@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 
-// Añade la clase "in" a los elementos .reveal cuando entran en pantalla
-export default function useReveal() {
+// Añade la clase "in" a los elementos .reveal cuando entran en pantalla.
+// `dep` cambia al cambiar de página para volver a observar los elementos nuevos.
+export default function useReveal(dep) {
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) =>
@@ -13,7 +14,7 @@ export default function useReveal() {
         }),
       { threshold: 0.12 },
     )
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el))
+    document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el))
     return () => io.disconnect()
-  }, [])
+  }, [dep])
 }

@@ -15,6 +15,7 @@ export default function Conjuntos() {
             <p className="idx">(02) Conjuntos</p>
             <h2 className="cats-title">Buzo y pantaloneta, listos para usar</h2>
           </div>
+          <a className="btn btn--dark" href="#/categoria/Conjuntos">Ver todos</a>
         </header>
         <div className="conj">
           {CONJUNTOS.map((c, i) => (

@@ -1,5 +1,6 @@
 import local from '../assets/local.webp'
 import logo from '../assets/logo.png'
+import { PRODUCTS, money } from '../data/products'
 import './lab.css'
 
 const mark = { backgroundImage: `url(${logo})` }
@@ -597,6 +598,186 @@ function VD() {
   )
 }
 
+// Ficha de prenda (producto de ejemplo)
+const PROD = { name: 'Bermuda jean', cat: 'Bermudas', price: '$ 95.000', sizes: ['M', 'L', 'XL'], pos: '45% 80%' }
+
+function Sizes({ on = 'L' }) {
+  return <div className="vp__sizes">{PROD.sizes.map((s) => <button key={s} className={s === on ? 'on' : ''}>{s}</button>)}</div>
+}
+function Buy() {
+  return <div className="vp__buy"><a className="vp__btn">Agregar a la bolsa</a><a className="vp__btn vp__btn--o">Preguntar por WhatsApp</a></div>
+}
+
+// P-A: galería con miniaturas y acordeón de detalles
+function PA() {
+  return (
+    <section className="vp vpa">
+      <div className="vpa__gal">
+        <div className="vpa__main" style={ph(PROD.pos, 300)} />
+        <div className="vpa__thumbs">{['45% 80%', '52% 86%', '11% 91%', '70% 40%'].map((p) => <span key={p} style={ph(p, 360)} />)}</div>
+      </div>
+      <div className="vpa__info">
+        <small>← {PROD.cat}</small>
+        <h1 style={gothic}>{PROD.name}</h1>
+        <p className="vp__price">{PROD.price}</p>
+        <p className="vp__lbl">TALLA</p><Sizes /><Buy />
+        <ul className="vpa__acc">
+          {['Detalles de la prenda', 'Envíos a toda Colombia', 'Cambios y garantía'].map((t) => <li key={t}>{t}<i>+</i></li>)}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+// P-B: la info como etiqueta de ropa colgando
+function PB() {
+  return (
+    <section className="vp vpb">
+      <div className="vpb__img" style={ph(PROD.pos, 300)} />
+      <div className="vpb__side">
+        <i className="vpb__string" />
+        <div className="vpb__tag">
+          <i className="vpb__hole" />
+          <small>{PROD.cat.toUpperCase()}</small>
+          <h1 style={gothic}>{PROD.name}</h1>
+          <p className="vp__price" style={gothic}>{PROD.price}</p>
+          <p className="vp__lbl">TALLA</p><Sizes />
+          <Buy />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// P-C: foto a sangre con tarjeta negra encima
+function PC() {
+  return (
+    <section className="vp vpc">
+      <div className="vpc__bg" style={ph(PROD.pos, 220)} />
+      <small className="vpc__back">← {PROD.cat}</small>
+      <div className="vpc__card">
+        <small>{PROD.cat.toUpperCase()}</small>
+        <h1 style={gothic}>{PROD.name}</h1>
+        <p className="vp__price">{PROD.price}</p>
+        <p className="vp__lbl">TALLA</p><Sizes /><Buy />
+      </div>
+    </section>
+  )
+}
+
+// P-D: foto, info y "completa tu pinta"
+function PD() {
+  return (
+    <section className="vp vpd">
+      <div className="vpd__top">
+        <div className="vpd__img" style={ph(PROD.pos, 300)} />
+        <div className="vpd__info">
+          <small>← {PROD.cat}</small>
+          <h1 style={gothic}>{PROD.name}</h1>
+          <p className="vp__price">{PROD.price}</p>
+          <p className="vp__lbl">TALLA</p><Sizes /><Buy />
+        </div>
+      </div>
+      <p className="vp__lbl" style={{ marginTop: 26 }}>COMPLETA TU PINTA</p>
+      <div className="vpd__row">
+        {[['Camiseta blanca básica', '$ 75.000', '100% 82%'], ['Gorra negra', '$ 65.000', '3% 38%'], ['Tenis blancos', '$ 220.000', '11% 91%']].map(([n, p, pos]) => (
+          <article key={n}><span style={ph(pos, 360)} /><div><b>{n}</b><small>{p}</small></div><button>+</button></article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// Catálogo (usa las prendas de ejemplo)
+const KP = PRODUCTS.slice(0, 8)
+const KCATS = ['Todo', 'Camisetas', 'Gorras', 'Jeans', 'Bermudas', 'Tenis', 'Sudaderas', 'Conjuntos', 'Accesorios', 'Deportivo']
+const KChips = () => <div className="vk__chips">{KCATS.map((c, i) => <span key={c} className={i === 0 ? 'on' : ''}>{c}</span>)}</div>
+
+// K-A: palabra fantasma gigante, chips y cuadrícula con precio sobre la foto
+function KA() {
+  return (
+    <section className="vk vka">
+      <b className="vka__ghost" style={gothic}>Todo</b>
+      <div className="vka__head"><small>← COLECCIÓN</small><h1 style={gothic}>Todo</h1><p>17 PRENDAS</p></div>
+      <KChips />
+      <div className="vka__grid">
+        {KP.slice(0, 4).map((p) => (
+          <article key={p.id}>
+            <div style={ph(p.pos, 340)}><i>{money(p.price)}</i><button>Agregar +</button></div>
+            <small>{p.category}</small><b>{p.name}</b><em>{p.sizes.join(' · ')}</em>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// K-B: filtros a la izquierda y cuadrícula de tres columnas
+function KB() {
+  return (
+    <section className="vk vkb">
+      <aside>
+        <small>← COLECCIÓN</small>
+        <h4>Categorías</h4>
+        <ul>{KCATS.slice(0, 7).map((c, i) => <li key={c} className={i === 0 ? 'on' : ''}>{c}<span>{[17, 4, 2, 2, 2, 1, 2][i]}</span></li>)}</ul>
+        <h4>Talla</h4>
+        <div className="vkb__sz">{['S', 'M', 'L', 'XL', '28', '30', '38', '40'].map((s, i) => <span key={s} className={i === 1 ? 'on' : ''}>{s}</span>)}</div>
+        <h4>Precio</h4>
+        <div className="vkb__rng"><i /><b /></div>
+        <p className="vkb__rv"><span>$ 45.000</span><span>$ 220.000</span></p>
+      </aside>
+      <div className="vkb__main">
+        <header><h1 style={gothic}>Todo</h1><span>17 prendas · Ordenar: Nuevo ▾</span></header>
+        <div className="vkb__grid">
+          {KP.slice(0, 6).map((p) => (
+            <article key={p.id}><div style={ph(p.pos, 340)} /><small>{p.category}</small><b>{p.name}</b><span>{money(p.price)}</span></article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// K-C: mosaico editorial con nombre sobre la foto
+function KC() {
+  return (
+    <section className="vk vkc">
+      <div className="vkc__head"><h1 style={gothic}>Todo</h1><div><small>17 PRENDAS</small><KChips /></div></div>
+      <div className="vkc__grid">
+        {KP.slice(0, 6).map((p, i) => (
+          <article key={p.id} className={i === 0 ? 'big' : ''} style={ph(p.pos, i === 0 ? 260 : 340)}>
+            <small>N°{String(i + 1).padStart(2, '0')}</small>
+            <b style={gothic}>{p.name}</b>
+            <span>{money(p.price)}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// K-D: lista densa tipo índice
+function KD() {
+  return (
+    <section className="vk vkd">
+      <div className="vkd__head"><h1 style={gothic}>Todo</h1><KChips /></div>
+      <ul>
+        <li className="vkd__th"><span>N°</span><span /><span>Prenda</span><span>Tallas</span><span>Precio</span><span /></li>
+        {KP.map((p, i) => (
+          <li key={p.id} className={i === 1 ? 'on' : ''}>
+            <span>{String(i + 1).padStart(2, '0')}</span>
+            <i style={ph(p.pos, 380)} />
+            <b style={gothic}>{p.name}</b>
+            <em>{p.sizes.join(' · ')}</em>
+            <strong>{money(p.price)}</strong>
+            <button>+</button>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 export default function Lab({ v }) {
-  return { a: <A />, b: <B />, c: <C />, d: <D />, ca: <CA />, cb: <CB />, cc: <CC />, cd: <CD />, ja: <JA />, jb: <JB />, jc: <JC />, jd: <JD />, ma: <MA />, mb: <MB />, mc: <MC />, md: <MD />, ha: <HA />, hb: <HB />, hc: <HC />, hd: <HD />, ea: <EA />, eb: <EB />, ec: <EC />, ed: <ED />, va: <VA />, vb: <VB />, vc: <VC />, vd: <VD /> }[v] || <A />
+  return { ka: <KA />, kb: <KB />, kc: <KC />, kd: <KD />, pa: <PA />, pb: <PB />, pc: <PC />, pd: <PD />, a: <A />, b: <B />, c: <C />, d: <D />, ca: <CA />, cb: <CB />, cc: <CC />, cd: <CD />, ja: <JA />, jb: <JB />, jc: <JC />, jd: <JD />, ma: <MA />, mb: <MB />, mc: <MC />, md: <MD />, ha: <HA />, hb: <HB />, hc: <HC />, hd: <HD />, ea: <EA />, eb: <EB />, ec: <EC />, ed: <ED />, va: <VA />, vb: <VB />, vc: <VC />, vd: <VD /> }[v] || <A />
 }

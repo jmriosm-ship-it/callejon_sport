@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useBag } from '../hooks/useBag'
 import { wa } from '../data/config'
+import { money } from '../data/products'
 
 export default function BagDrawer() {
   const { items, open, closeBag, setQty, clear, count } = useBag()
@@ -12,9 +13,12 @@ export default function BagDrawer() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open, closeBag])
 
+  const total = items.reduce((n, i) => n + (i.price || 0) * i.qty, 0)
+
   const message =
     'Hola Callejón Store, quiero pedir:\n' +
-    items.map((i) => `- ${i.qty} x ${i.name}`).join('\n') +
+    items.map((i) => `- ${i.qty} x ${i.name}${i.price ? ` (${money(i.price * i.qty)})` : ''}`).join('\n') +
+    (total ? `\nTotal: ${money(total)}` : '') +
     '\n¿Me confirman tallas, colores y disponibilidad?'
 
   return (
@@ -26,12 +30,12 @@ export default function BagDrawer() {
         </header>
 
         {items.length === 0 ? (
-          <p className="bag__empty">Aún no agregaste nada. Elegí tus conjuntos y los ves acá.</p>
+          <p className="bag__empty">Aún no agregaste nada. Elegí tus prendas y las ves acá.</p>
         ) : (
           <ul className="bag__list">
             {items.map((i) => (
               <li key={i.name}>
-                <span>{i.name}</span>
+                <span>{i.name}{i.price ? <small className="bag__price">{money(i.price * i.qty)}</small> : null}</span>
                 <div className="bag__qty">
                   <button onClick={() => setQty(i.name, i.qty - 1)} aria-label={`Quitar una ${i.name}`}>−</button>
                   <b>{i.qty}</b>
@@ -43,6 +47,7 @@ export default function BagDrawer() {
         )}
 
         <footer className="bag__foot">
+          {total > 0 && <p className="bag__total"><span>Total</span><b>{money(total)}</b></p>}
           <a
             className={`btn btn--light ${items.length === 0 ? 'is-off' : ''}`}
             href={items.length ? wa(message) : undefined}

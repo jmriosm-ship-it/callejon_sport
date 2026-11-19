@@ -30,11 +30,11 @@ export function BagProvider({ children }) {
       count: items.reduce((n, i) => n + i.qty, 0),
       openBag: () => setOpen(true),
       closeBag: () => setOpen(false),
-      add: (name) => {
+      add: (name, price) => {
         setItems((prev) =>
           prev.some((i) => i.name === name)
             ? prev.map((i) => (i.name === name ? { ...i, qty: i.qty + 1 } : i))
-            : [...prev, { name, qty: 1 }],
+            : [...prev, { name, qty: 1, price }],
         )
         setOpen(true)
       },

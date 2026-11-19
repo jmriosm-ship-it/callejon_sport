@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import logo from '../assets/logo.png'
 import Icon from './Icon'
-import { CATEGORIES, NAV_LINKS, wa } from '../data/config'
+import { CATEGORIES, NAV_LINKS } from '../data/config'
 import { useBag } from '../hooks/useBag'
 
 const DRAWER_LINKS = [
@@ -10,9 +10,9 @@ const DRAWER_LINKS = [
   NAV_LINKS[4],
 ]
 
-const catLink = (c) => wa(`Hola, me interesa ${c.toLowerCase()}`)
+const catLink = (c) => `#/categoria/${encodeURIComponent(c)}`
 
-export default function Navbar() {
+export default function Navbar({ solid = false }) {
   const { count, openBag } = useBag()
   const [open, setOpen] = useState(false)
   const [coll, setColl] = useState(false)
@@ -45,14 +45,14 @@ export default function Navbar() {
   const cats = (onClick) =>
     CATEGORIES.map((c) => (
       <li key={c}>
-        <a href={catLink(c)} target="_blank" rel="noreferrer" onClick={onClick}>{c}</a>
+        <a href={catLink(c)} onClick={onClick}>{c}</a>
       </li>
     ))
 
   return (
     <>
       <header
-        className={`nav ${scrolled ? 'is-scrolled' : ''} ${coll ? 'has-coll' : ''}`}
+        className={`nav ${scrolled || solid ? 'is-scrolled' : ''} ${coll ? 'has-coll' : ''}`}
         onMouseLeave={() => setColl(false)}
       >
         <button className="nav__burger" onClick={() => setOpen(true)} aria-label="Abrir menú">
@@ -82,7 +82,7 @@ export default function Navbar() {
 
         <div className="mega" aria-hidden={!coll}>
           <ul>{cats(() => setColl(false))}</ul>
-          <a className="mega__all" href="#coleccion" onClick={() => setColl(false)} tabIndex={coll ? 0 : -1}>
+          <a className="mega__all" href="#/categoria/Todo" onClick={() => setColl(false)} tabIndex={coll ? 0 : -1}>
             Ver toda la colección →
           </a>
         </div>
@@ -97,7 +97,12 @@ export default function Navbar() {
                 <button className="drawer__coll" aria-expanded={drawerColl} onClick={() => setDrawerColl((v) => !v)}>
                   {label} {drawerColl ? '▴' : '▾'}
                 </button>
-                {drawerColl && <ul className="drawer__cats">{cats(close)}</ul>}
+                {drawerColl && (
+                  <ul className="drawer__cats">
+                    <li><a href="#/categoria/Todo" onClick={close}>Todo</a></li>
+                    {cats(close)}
+                  </ul>
+                )}
               </div>
             ) : (
               <a key={id} href={`#${id}`} onClick={close}>{label}</a>
