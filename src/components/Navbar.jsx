@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import logo from '../assets/logo.png'
 import Icon from './Icon'
-import { CATEGORIES, NAV_LINKS } from '../data/config'
+import { NAV_LINKS } from '../data/config'
+import { useStore } from '../store/useStore'
 import { useBag } from '../hooks/useBag'
 
 const DRAWER_LINKS = [
@@ -14,6 +15,7 @@ const catLink = (c) => `#/categoria/${encodeURIComponent(c)}`
 
 export default function Navbar({ solid = false }) {
   const { count, openBag } = useBag()
+  const { categories } = useStore()
   const [open, setOpen] = useState(false)
   const [coll, setColl] = useState(false)
   const [drawerColl, setDrawerColl] = useState(false)
@@ -43,9 +45,9 @@ export default function Navbar({ solid = false }) {
 
   const close = () => setOpen(false)
   const cats = (onClick) =>
-    CATEGORIES.map((c) => (
-      <li key={c}>
-        <a href={catLink(c)} onClick={onClick}>{c}</a>
+    categories.map((c) => (
+      <li key={c.id}>
+        <a href={catLink(c.name)} onClick={onClick}>{c.name}</a>
       </li>
     ))
 

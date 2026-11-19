@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 // Rutas por hash (funcionan en GitHub Pages): #/categoria/Camisetas, #/producto/p3
 const parse = () => {
+  const simple = window.location.hash.match(/^#\/(admin|carrito)\/?$/)
+  if (simple) return { name: simple[1], param: null }
   const m = window.location.hash.match(/^#\/(categoria|producto)\/(.+)$/)
   return m ? { name: m[1], param: decodeURIComponent(m[2]) } : { name: 'home', param: null }
 }

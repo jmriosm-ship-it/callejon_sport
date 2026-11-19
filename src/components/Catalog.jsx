@@ -1,10 +1,12 @@
 import ProductCard from './ProductCard'
-import { IS_SAMPLE, PRODUCT_CATEGORIES, inCategory } from '../data/products'
-import { wa } from '../data/config'
+import { IS_SAMPLE } from '../data/products'
+import { useStore } from '../store/useStore'
 
 export default function Catalog({ category }) {
+  const { categories, inCategory, wa, products } = useStore()
   const list = inCategory(category)
-  const chips = ['Todo', ...PRODUCT_CATEGORIES]
+  const chips = ['Todo', ...categories.map((c) => c.name)]
+  const sample = IS_SAMPLE && products.some((p) => !p.photos?.length)
 
   return (
     <section className="page catalog">
@@ -19,7 +21,7 @@ export default function Catalog({ category }) {
         <a className="page__back" href="#coleccion">← Colección</a>
         <h1 className="catalog__title">{category}</h1>
         <p className="catalog__count">{list.length} {list.length === 1 ? 'prenda' : 'prendas'}</p>
-        {IS_SAMPLE && <p className="sample">Prendas de ejemplo: las fotos y los precios son provisionales.</p>}
+        {sample && <p className="sample">Prendas de ejemplo: las fotos y los precios son provisionales.</p>}
 
         <nav className="chips" aria-label="Categorías">
           {chips.map((c) => (

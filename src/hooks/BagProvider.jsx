@@ -30,17 +30,20 @@ export function BagProvider({ children }) {
       count: items.reduce((n, i) => n + i.qty, 0),
       openBag: () => setOpen(true),
       closeBag: () => setOpen(false),
-      add: (name, price) => {
+      // max = unidades disponibles de esa talla (sin tope si no se indica)
+      add: (name, price, max = Infinity) => {
         setItems((prev) =>
           prev.some((i) => i.name === name)
-            ? prev.map((i) => (i.name === name ? { ...i, qty: i.qty + 1 } : i))
-            : [...prev, { name, qty: 1, price }],
+            ? prev.map((i) => (i.name === name ? { ...i, max, qty: Math.min(i.qty + 1, max) } : i))
+            : [...prev, { name, qty: 1, price, max }],
         )
         setOpen(true)
       },
       setQty: (name, qty) =>
         setItems((prev) =>
-          qty < 1 ? prev.filter((i) => i.name !== name) : prev.map((i) => (i.name === name ? { ...i, qty } : i)),
+          qty < 1
+            ? prev.filter((i) => i.name !== name)
+            : prev.map((i) => (i.name === name ? { ...i, qty: Math.min(qty, i.max ?? Infinity) } : i)),
         ),
       clear: () => setItems([]),
     }),

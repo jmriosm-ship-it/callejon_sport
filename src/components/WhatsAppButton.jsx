@@ -1,7 +1,8 @@
 import Icon from './Icon'
-import { INSTAGRAM_URL, wa } from '../data/config'
+import { useStore } from '../store/useStore'
 
 export default function WhatsAppButton() {
+  const { wa, instagram: INSTAGRAM_URL } = useStore()
   return (
     <>
       <a className="fab fab--ig" href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram">

@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useBag } from '../hooks/useBag'
-import { wa } from '../data/config'
 import { money } from '../data/products'
 
 export default function BagDrawer() {
@@ -15,11 +14,6 @@ export default function BagDrawer() {
 
   const total = items.reduce((n, i) => n + (i.price || 0) * i.qty, 0)
 
-  const message =
-    'Hola Callejón Store, quiero pedir:\n' +
-    items.map((i) => `- ${i.qty} x ${i.name}${i.price ? ` (${money(i.price * i.qty)})` : ''}`).join('\n') +
-    (total ? `\nTotal: ${money(total)}` : '') +
-    '\n¿Me confirman tallas, colores y disponibilidad?'
 
   return (
     <div className={`bag ${open ? 'is-open' : ''}`} onClick={closeBag} aria-hidden={!open}>
@@ -39,7 +33,11 @@ export default function BagDrawer() {
                 <div className="bag__qty">
                   <button onClick={() => setQty(i.name, i.qty - 1)} aria-label={`Quitar una ${i.name}`}>−</button>
                   <b>{i.qty}</b>
-                  <button onClick={() => setQty(i.name, i.qty + 1)} aria-label={`Agregar una ${i.name}`}>+</button>
+                  <button
+                    onClick={() => setQty(i.name, i.qty + 1)}
+                    disabled={i.qty >= (i.max ?? Infinity)}
+                    aria-label={`Agregar una ${i.name}`}
+                  >+</button>
                 </div>
               </li>
             ))}
@@ -50,12 +48,11 @@ export default function BagDrawer() {
           {total > 0 && <p className="bag__total"><span>Total</span><b>{money(total)}</b></p>}
           <a
             className={`btn btn--light ${items.length === 0 ? 'is-off' : ''}`}
-            href={items.length ? wa(message) : undefined}
-            target="_blank"
-            rel="noreferrer"
+            href={items.length ? '#/carrito' : undefined}
+            onClick={closeBag}
             aria-disabled={items.length === 0}
           >
-            Pedir por WhatsApp
+            Ir a pagar
           </a>
           {items.length > 0 && <button className="bag__clear" onClick={clear}>Vaciar bolsa</button>}
           <p>Te confirmamos tallas, colores y disponibilidad por WhatsApp.</p>

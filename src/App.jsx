@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect } from 'react'
 import useReveal from './hooks/useReveal'
 import useRoute from './hooks/useRoute'
 import { BagProvider } from './hooks/BagProvider'
+import { StoreProvider } from './store/StoreProvider'
+import { useStore } from './store/useStore'
 import BagDrawer from './components/BagDrawer'
 import Tapes from './components/Tapes'
 import Navbar from './components/Navbar'
@@ -16,9 +18,12 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import Catalog from './components/Catalog'
 import ProductPage from './components/ProductPage'
+import CartPage from './components/CartPage'
 
 // Pruebas de diseño (solo con ?lab=...), cargadas aparte para no pesar en la página
 const Lab = lazy(() => import('./lab/Lab'))
+// Panel de administración (solo se descarga al entrar a #/admin)
+const Admin = lazy(() => import('./admin/Admin'))
 
 function Home() {
   return (
@@ -35,9 +40,10 @@ function Home() {
   )
 }
 
-export default function App() {
+function Shell() {
   const route = useRoute()
-  useReveal(`${route.name}:${route.param}`)
+  const { ready } = useStore()
+  useReveal(`${route.name}:${route.param}:${ready}`)
 
   useEffect(() => {
     const h = window.location.hash
@@ -48,8 +54,7 @@ export default function App() {
     }
   }, [route])
 
-  const lab = new URLSearchParams(window.location.search).get('lab')
-  if (lab) return <Suspense fallback={null}><Lab v={lab} /></Suspense>
+  if (route.name === 'admin') return <Suspense fallback={null}><Admin /></Suspense>
 
   return (
     <BagProvider>
@@ -58,11 +63,23 @@ export default function App() {
       <main>
         {route.name === 'categoria' && <Catalog category={route.param} />}
         {route.name === 'producto' && <ProductPage key={route.param} id={route.param} />}
+        {route.name === 'carrito' && <CartPage />}
         {route.name === 'home' && <Home />}
       </main>
       <Footer />
       <WhatsAppButton />
       <BagDrawer />
     </BagProvider>
+  )
+}
+
+export default function App() {
+  const lab = new URLSearchParams(window.location.search).get('lab')
+  if (lab) return <Suspense fallback={null}><Lab v={lab} /></Suspense>
+
+  return (
+    <StoreProvider>
+      <Shell />
+    </StoreProvider>
   )
 }

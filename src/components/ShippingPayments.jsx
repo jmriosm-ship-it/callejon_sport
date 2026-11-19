@@ -1,4 +1,4 @@
-import { SHIPPING, PAYMENTS } from '../data/config'
+import { useStore } from '../store/useStore'
 
 // "Etiqueta: valor" -> etiqueta en negrita y el valor normal
 const Row = ({ text }) => {
@@ -16,6 +16,8 @@ function Tape({ word }) {
 }
 
 export default function ShippingPayments() {
+  const { settings } = useStore()
+  const { shipping: SHIPPING = [], payments: PAYMENTS = [] } = settings
   return (
     <section className="section ship" id="envios">
       <div className="wrap duo">

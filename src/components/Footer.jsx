@@ -1,7 +1,8 @@
 import logo from '../assets/logo.png'
-import { INSTAGRAM_URL } from '../data/config'
+import { useStore } from '../store/useStore'
 
 export default function Footer() {
+  const { instagram: INSTAGRAM_URL } = useStore()
   return (
     <footer className="footer">
       <div className="wrap footer__row">

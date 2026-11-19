@@ -1,10 +1,13 @@
-import local from '../assets/local.webp'
-import { CONJUNTOS } from '../data/config'
+import { itemPhoto } from '../lib/photo'
 import { money } from '../data/products'
+import { finalPrice, hasDiscount, isSoldOut } from '../lib/pricing'
 import { useBag } from '../hooks/useBag'
+import { useStore } from '../store/useStore'
 
 export default function Conjuntos() {
   const { add } = useBag()
+  const { conjuntos } = useStore()
+  const list = conjuntos.slice(0, 8)
 
   return (
     <section className="section section--dark conjuntos" id="conjuntos">
@@ -17,26 +20,37 @@ export default function Conjuntos() {
           <a className="btn btn--light" href="#/categoria/Conjuntos">Ver todos</a>
         </header>
         <div className="cj">
-          {CONJUNTOS.map((c, i) => (
-            <article
-              key={c.title}
-              className="cj__card reveal"
-              style={{ backgroundImage: `url(${local})`, backgroundPosition: c.pos, '--d': `${i * 80}ms` }}
-            >
-              <i className="cj__price">{money(c.price)}</i>
-              <div>
-                <h3 className="cj__name">{c.title}</h3>
-                <p className="cj__incl">Buzo + pantaloneta</p>
-                <button
-                  className="cj__add"
-                  onClick={() => add(`${c.title} (buzo + pantaloneta)`, c.price)}
-                  aria-label={`Agregar ${c.title} a la bolsa`}
-                >
-                  Agregar +
-                </button>
-              </div>
-            </article>
-          ))}
+          {list.map((c, i) => {
+            const sold = isSoldOut(c)
+            const price = finalPrice(c)
+            const href = `#/producto/${c.id}`
+            return (
+              <article
+                key={c.id}
+                className={`cj__card reveal ${sold ? 'is-sold' : ''}`}
+                style={{ ...itemPhoto(c), '--d': `${i * 80}ms` }}
+              >
+                <a className="cj__link" href={href} aria-label={c.name} />
+                <i className="cj__price">
+                  {hasDiscount(c) && <s>{money(c.price)}</s>}
+                  {money(price)}
+                </i>
+                {sold && <b className="cj__sold">Agotado</b>}
+                {!sold && hasDiscount(c) && <b className="cj__off">-{c.discount}%</b>}
+                <div>
+                  <h3 className="cj__name">{c.name}</h3>
+                  <p className="cj__incl">Buzo + pantaloneta</p>
+                  {!sold && (c.sizes.length === 1 ? (
+                    <button className="cj__add" onClick={() => add(c.name, price, c.sizes[0].stock)} aria-label={`Agregar ${c.name} a la bolsa`}>
+                      Agregar +
+                    </button>
+                  ) : (
+                    <a className="cj__add" href={href}>Elegir talla</a>
+                  ))}
+                </div>
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

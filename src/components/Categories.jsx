@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import local from '../assets/local.webp'
-import { CATEGORIES, CATEGORY_PHOTOS } from '../data/config'
+import { catPhoto } from '../lib/photo'
+import { useStore } from '../store/useStore'
+import { CONJUNTOS_CAT } from '../store/seed'
 
 const isMobile = () => window.matchMedia('(max-width: 900px)').matches
 // El mouse solo abre paneles en la vista de computador (en la vertical se abre con un toque,
@@ -9,6 +10,8 @@ const canHover = () => window.matchMedia('(hover: hover) and (min-width: 901px)'
 
 export default function Categories() {
   const [active, setActive] = useState(0)
+  // Conjuntos tiene su propia sección
+  const CATEGORIES = useStore().categories.filter((c) => c.name !== CONJUNTOS_CAT)
 
   return (
     <section className="section section--dark" id="coleccion">
@@ -22,12 +25,14 @@ export default function Categories() {
         </header>
 
         <div className="acc reveal">
-          {CATEGORIES.map((c, i) => (
+          {CATEGORIES.map((cat, i) => {
+            const c = cat.name
+            return (
             <a
-              key={c}
+              key={cat.id}
               className={`acc__item ${i === active ? 'is-on' : ''}`}
               href={`#/categoria/${encodeURIComponent(c)}`}
-              style={{ backgroundImage: `url(${local})`, backgroundPosition: CATEGORY_PHOTOS[c] }}
+              style={catPhoto(cat)}
               onMouseEnter={() => canHover() && setActive(i)}
               onFocus={() => canHover() && setActive(i)}
               onClick={(e) => {
@@ -43,7 +48,8 @@ export default function Categories() {
               <b className="acc__name">{c}</b>
               <span className="acc__go">Comprar →</span>
             </a>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

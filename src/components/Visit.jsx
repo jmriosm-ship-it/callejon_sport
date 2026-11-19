@@ -1,6 +1,4 @@
-import { ADDRESS, HOURS, INSTAGRAM_URL, MAPS_QUERY, wa } from '../data/config'
-
-const q = encodeURIComponent(MAPS_QUERY)
+import { useStore } from '../store/useStore'
 
 // Mapa de ejemplo mientras no haya dirección real en config.js
 function PlaceholderMap() {
@@ -23,6 +21,9 @@ function PlaceholderMap() {
 }
 
 export default function Visit() {
+  const { settings, wa, instagram } = useStore()
+  const { address: ADDRESS = '', hours: HOURS = [], maps: MAPS_QUERY = '' } = settings
+  const q = encodeURIComponent(MAPS_QUERY)
   return (
     <section className="section section--dark visit" id="visitanos">
       <div className="visit__split">
@@ -38,7 +39,7 @@ export default function Visit() {
           </dl>
           <div className="hero__cta" style={{ justifyContent: 'flex-start', marginTop: 0 }}>
             <a className="btn btn--light" href={wa('Hola, ¿dónde queda el local?')} target="_blank" rel="noreferrer">Escríbenos</a>
-            <a className="btn btn--ghost" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram</a>
+            <a className="btn btn--ghost" href={instagram} target="_blank" rel="noreferrer">Instagram</a>
           </div>
         </div>
 

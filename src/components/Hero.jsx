@@ -1,8 +1,9 @@
 import local from '../assets/local.webp'
-import { wa } from '../data/config'
+import { useStore } from '../store/useStore'
 import Logo3D from './Logo3D'
 
 export default function Hero() {
+  const { wa } = useStore()
   return (
     <section className="hero" id="inicio">
       <img className="hero__bg" src={local} alt="Interior de Callejón Store con camisetas y gorras" />
