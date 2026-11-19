@@ -1,5 +1,6 @@
 import local from '../assets/local.webp'
 import { wa } from '../data/config'
+import Logo3D from './Logo3D'
 
 export default function Hero() {
   return (
@@ -7,6 +8,9 @@ export default function Hero() {
       <img className="hero__bg" src={local} alt="Interior de Callejón Store con camisetas y gorras" />
       <div className="hero__shade" />
       <h1 className="hero__word">Callejón Store</h1>
+      <div className="hero__stage">
+        <Logo3D />
+      </div>
       <div className="wrap hero__content">
         <p className="hero__cap">
           Tienda de ropa urbana<br />

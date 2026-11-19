@@ -102,16 +102,16 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: 0.005em; }
 .drawer__close { position: absolute; top: 18px; left: 22px; font-size: 20px; width: 40px; height: 40px; }
 
 /* hero */
-.hero { position: relative; height: 100svh; min-height: 620px; overflow: hidden; isolation: isolate; background: #000; display: flex; flex-direction: column; align-items: center; padding-top: clamp(130px, 21vh, 200px); }
+.hero { position: relative; min-height: max(100svh, 800px); overflow: hidden; isolation: isolate; background: #000; display: flex; flex-direction: column; align-items: center; padding: clamp(104px, 14vh, 150px) 0 40px; }
 .hero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; filter: grayscale(1) contrast(1.1) brightness(0.9); animation: zoom 1.6s var(--ease) both; }
 .hero__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.1) 80%); }
 @keyframes zoom { from { transform: scale(1.1); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes rise { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
-.hero__content { position: static; width: 100%; text-align: center; margin-top: clamp(40px, 12vh, 140px); }
+.hero__content { position: static; width: 100%; text-align: center; margin-top: 0; }
 .hero__cap { font-size: 12px; letter-spacing: 0.16em; line-height: 1.9; text-transform: uppercase; animation: rise 0.9s var(--ease) 0.3s both; }
 .hero__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; animation: rise 0.9s var(--ease) 0.42s both; }
 .hero__word { position: static; width: 100%; margin: 0; text-align: center; font-family: "UnifrakturCook", "Old English Text MT", serif; font-weight: 700; text-transform: none; font-size: 11.5vw; line-height: 1.05; text-wrap: balance; letter-spacing: 0; animation: rise 1s var(--ease) 0.1s both; }
-@media (max-width: 600px) { .hero__word { font-size: 17vw; } .hero { padding-top: 110px; } }
+@media (max-width: 600px) { .hero__word { font-size: 17vw; } .hero { padding-top: 96px; min-height: max(100svh, 760px); } }
 
 /* secciones */
 .section { padding-block: clamp(64px, 10vw, 140px); }
@@ -360,3 +360,18 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: 0.005em; }
 .look__title { font-family: 'UnifrakturCook', 'Old English Text MT', serif; font-weight: 700; text-transform: none; font-size: clamp(2rem, 4vw, 3rem); line-height: 1; margin-bottom: 22px; }
 .look .pgrid { grid-template-columns: repeat(3, 1fr); gap: 26px 20px; }
 @media (max-width: 900px) { .look .pgrid { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; } }
+
+/* logo 3D */
+.l3d { --h: min(44vh, 380px); position: relative; height: var(--h); aspect-ratio: 448 / 528; perspective: 1100px; }
+.l3d__tilt { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+.l3d__layer {
+  position: absolute; inset: 0; overflow: hidden; transform: translateZ(var(--z)); backface-visibility: visible;
+  clip-path: polygon(50% 1.1%, 98.7% 24.6%, 98.7% 75%, 50% 98.9%, 1.3% 75%, 1.3% 24.6%);
+}
+.l3d__layer img { position: absolute; width: 228.57%; max-width: none; left: -59.38%; top: -45.83%; user-select: none; pointer-events: none; }
+.l3d__layer::after { content: ''; position: absolute; inset: 0; background: #000; opacity: var(--o); }
+.l3d__layer--front::after { display: none; }
+.l3d__shine { position: absolute; inset: 0; mix-blend-mode: soft-light; background: radial-gradient(circle at var(--sx, 50%) var(--sy, 40%), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 55%); pointer-events: none; }
+.l3d__shadow { position: absolute; left: 6%; right: 6%; bottom: -9%; height: 11%; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%); filter: blur(4px); }
+.hero__stage { flex: 1; width: 100%; display: grid; place-items: center; min-height: 300px; padding: 8px 0 28px; }
+@media (max-width: 600px) { .l3d { --h: min(33vh, 280px); } .hero__stage { min-height: 260px; } }
