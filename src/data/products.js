@@ -1,6 +1,6 @@
 // PRENDAS DE EJEMPLO. Reemplazar por las reales (nombre, precio, tallas y foto).
 // Las fotos son recortes de la foto del local (`pos`) hasta que haya fotos de producto.
-export const IS_SAMPLE = true
+export const IS_SAMPLE = false
 
 export const PRODUCT_CATEGORIES = [
   'Camisetas', 'Gorras', 'Jeans', 'Bermudas', 'Tenis', 'Sudaderas', 'Conjuntos', 'Accesorios', 'Deportivo',

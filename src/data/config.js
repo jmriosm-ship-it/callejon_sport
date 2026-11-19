@@ -58,8 +58,9 @@ export const SHIPPING = [
 
 // TODO: confirmar métodos de pago reales
 export const PAYMENTS = [
-  'Transferencia bancaria',
-  'Tarjetas crédito y débito',
+  'Nequi: por confirmar',
+  'Daviplata: por confirmar',
+  'Transferencia bancaria: por confirmar',
   'Pago contra entrega (por confirmar)',
 ]
 
