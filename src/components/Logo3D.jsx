@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import logo from '../assets/logo-3d.png'
 
-const LAYERS = 18 // capas apiladas: dan el grosor del logo
-const GAP = 2.6 // separación entre capas en px
+const LAYERS = 30 // capas apiladas: dan el grosor del logo
+const GAP = 1.4 // separación entre capas en px (más capas y más juntas = canto liso)
 
 // Logo en 3D: se balancea solo todo el tiempo (animación CSS) y el mouse le suma inclinación
 export default function Logo3D() {
@@ -17,7 +17,7 @@ export default function Logo3D() {
       const r = el.getBoundingClientRect()
       const dx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2)))
       const dy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2)))
-      tilt.current.style.transform = `rotateX(${(-dy * 14).toFixed(1)}deg) rotateY(${(dx * 20).toFixed(1)}deg)`
+      tilt.current.style.transform = `rotateX(${(-dy * 8).toFixed(1)}deg) rotateY(${(dx * 12).toFixed(1)}deg)`
       clearTimeout(timer)
       timer = setTimeout(() => { if (tilt.current) tilt.current.style.transform = '' }, 1600)
     }
@@ -41,8 +41,8 @@ export default function Logo3D() {
           {Array.from({ length: LAYERS }, (_, i) => (
             <span
               key={i}
-              className={`l3d__layer ${i === 0 ? 'l3d__layer--front' : ''}`}
-              style={{ '--z': `${(LAYERS / 2 - i) * GAP}px`, '--o': i === 0 ? 0 : Math.min(0.12 + i * 0.045, 0.85) }}
+              className={`l3d__layer ${i === 0 ? 'l3d__layer--front' : ''} ${i === LAYERS - 1 ? 'l3d__layer--back' : ''}`}
+              style={{ '--z': `${(LAYERS / 2 - i) * GAP}px`, '--o': i === 0 ? 0 : (0.1 + (i / (LAYERS - 1)) * 0.7).toFixed(3) }}
             >
               <img src={logo} alt="" draggable="false" />
               {i === 0 && <i className="l3d__shine" />}
