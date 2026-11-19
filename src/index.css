@@ -364,7 +364,7 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: 0.005em; }
 /* logo 3D */
 .l3d { --h: min(44vh, 380px); position: relative; height: var(--h); aspect-ratio: 448 / 528; perspective: 1100px; }
 .l3d__sway, .l3d__tilt { position: absolute; inset: 0; transform-style: preserve-3d; }
-.l3d__sway { animation: l3d-sway 8s ease-in-out infinite alternate; will-change: transform; }
+.l3d__sway { animation: l3d-sway 4.5s ease-in-out infinite alternate; will-change: transform; }
 .l3d__tilt { transition: transform 0.35s ease-out; }
 .l3d.is-paused .l3d__sway, .l3d.is-paused .l3d__shine, .l3d.is-paused .l3d__shadow { animation-play-state: paused; }
 .l3d__layer {
@@ -376,8 +376,8 @@ h2 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: 0.005em; }
 .l3d__layer--front::after { display: none; }
 .hero__stage { flex: 1; width: 100%; display: grid; place-items: center; min-height: 300px; padding: 8px 0 28px; }
 @media (max-width: 600px) { .l3d { --h: min(33vh, 280px); } .hero__stage { min-height: 260px; } }
-.l3d__shine { position: absolute; inset: 0; mix-blend-mode: soft-light; pointer-events: none; background: linear-gradient(115deg, rgba(255, 255, 255, 0) 30%, rgba(255, 233, 170, 0.9) 50%, rgba(255, 255, 255, 0) 70%); background-size: 260% 100%; animation: l3d-shine 8s ease-in-out infinite alternate; }
-.l3d__shadow { position: absolute; left: 6%; right: 6%; bottom: -9%; height: 11%; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%); filter: blur(4px); animation: l3d-shadow 8s ease-in-out infinite alternate; }
+.l3d__shine { position: absolute; inset: 0; mix-blend-mode: soft-light; pointer-events: none; background: linear-gradient(115deg, rgba(255, 255, 255, 0) 30%, rgba(255, 233, 170, 0.9) 50%, rgba(255, 255, 255, 0) 70%); background-size: 260% 100%; animation: l3d-shine 4.5s ease-in-out infinite alternate; }
+.l3d__shadow { position: absolute; left: 6%; right: 6%; bottom: -9%; height: 11%; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%); filter: blur(4px); animation: l3d-shadow 4.5s ease-in-out infinite alternate; }
 @keyframes l3d-sway {
   0% { transform: rotateY(-26deg) rotateX(4deg); }
   50% { transform: rotateY(2deg) rotateX(-6deg); }
