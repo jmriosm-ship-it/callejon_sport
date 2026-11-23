@@ -24,7 +24,7 @@ export default function BagDrawer() {
         </header>
 
         {items.length === 0 ? (
-          <p className="bag__empty">Aún no agregaste nada. Elegí tus prendas y las ves acá.</p>
+          <p className="bag__empty">Aún no has agregado nada. Elige tus prendas y las verás aquí.</p>
         ) : (
           <ul className="bag__list">
             {items.map((i) => (

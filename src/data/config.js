@@ -1,4 +1,4 @@
-// Datos editables de la tienda. Cambiá todo desde acá.
+// Datos editables de la tienda. Cambia todo desde aquí.
 
 export const WHATSAPP_NUMBER = '573161706977'
 export const INSTAGRAM_URL = 'https://instagram.com/callej0n_store'
@@ -85,13 +85,13 @@ export const CATEGORY_PHOTOS = {
 
 // Conversación de ejemplo para la sección "Cómo comprar" (de: 'cliente' o 'tienda')
 export const CHAT = [
-  { de: 'cliente', texto: 'Hola, quiero el Conjunto 01' },
-  { de: 'tienda', texto: '¡Hola! Claro. ¿Qué talla necesitás?' },
+  { de: 'cliente', texto: 'Hola, quiero un conjunto' },
+  { de: 'tienda', texto: '¡Hola! Claro. ¿Qué talla necesitas?' },
   { de: 'cliente', texto: 'Talla M' },
   { de: 'tienda', texto: 'Disponible. Te paso los datos de pago y lo enviamos a tu ciudad.' },
   { de: 'cliente', texto: 'Listo, ya pagué' },
 ]
 
-// TODO: poné acá la dirección tal como aparece en Google Maps (ej: "Calle 10 #5-20, Ciudad, Colombia").
+// Dirección tal como aparece en Google Maps.
 // Mientras esté vacío, la sección Visítanos muestra un mapa de ejemplo.
 export const MAPS_QUERY = 'Carrera 17 #15 A-14 Sur, Timanco 3 etapa, Neiva, Huila, Colombia'

@@ -21,8 +21,6 @@ import ProductPage from './components/ProductPage'
 import CartPage from './components/CartPage'
 import Legal from './components/Legal'
 
-// Pruebas de diseño (solo con ?lab=...), cargadas aparte para no pesar en la página
-const Lab = lazy(() => import('./lab/Lab'))
 // Panel de administración (solo se descarga al entrar a #/admin)
 const Admin = lazy(() => import('./admin/Admin'))
 
@@ -76,9 +74,6 @@ function Shell() {
 }
 
 export default function App() {
-  const lab = new URLSearchParams(window.location.search).get('lab')
-  if (lab) return <Suspense fallback={null}><Lab v={lab} /></Suspense>
-
   return (
     <StoreProvider>
       <Shell />
