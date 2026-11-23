@@ -519,3 +519,12 @@ a.cj__add { display: inline-grid; place-items: center; }
 .pay__opt b { font-weight: 500; display: block; }
 .pay__opt small { color: var(--faint); font-size: 13px; }
 .pay.field--error { outline: 1px solid var(--accent); outline-offset: 6px; border-radius: 12px; }
+
+/* ---------- Páginas legales ---------- */
+.legal__title { font-size: clamp(2rem, 5vw, 3.4rem); }
+.legal__body { max-width: 72ch; margin-top: 30px; display: grid; gap: 26px; }
+.legal__body h2 { font-size: 1.1rem; margin: 0 0 8px; font-weight: 600; }
+.legal__body p { margin: 0 0 10px; color: #cfcfcf; line-height: 1.7; font-size: 15px; }
+.footer__policies { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-block: 18px 6px; font-size: 13px; color: var(--faint); }
+.footer__policies a:hover { color: var(--accent-soft); }
+.field--check a { text-decoration: underline; }

@@ -9,6 +9,11 @@ export default function SettingsTab({ say }) {
   const [f, setF] = useState({
     whatsapp: settings.whatsapp || '',
     instagram: settings.instagram || '',
+    tiktok: settings.tiktok || '',
+    facebook: settings.facebook || '',
+    email: settings.email || '',
+    legalname: settings.legalname || '',
+    legalid: settings.legalid || '',
     address: settings.address || '',
     maps: settings.maps || '',
     hours: (settings.hours || []).join('\n'),
@@ -25,6 +30,11 @@ export default function SettingsTab({ say }) {
       await saveSettings({
         whatsapp,
         instagram: f.instagram.trim(),
+        tiktok: f.tiktok.trim(),
+        facebook: f.facebook.trim(),
+        email: f.email.trim(),
+        legalname: f.legalname.trim(),
+        legalid: f.legalid.trim(),
         address: f.address.trim(),
         maps: f.maps.trim(),
         hours: lines(f.hours),
@@ -46,6 +56,28 @@ export default function SettingsTab({ say }) {
         </label>
         <label>Link de Instagram
           <input value={f.instagram} onChange={set('instagram')} placeholder="https://instagram.com/…" />
+        </label>
+      </div>
+
+      <div className="adm-row">
+        <label>Link de TikTok
+          <input value={f.tiktok} onChange={set('tiktok')} placeholder="https://www.tiktok.com/@…" />
+        </label>
+        <label>Link de Facebook
+          <input value={f.facebook} onChange={set('facebook')} placeholder="https://facebook.com/…" />
+        </label>
+      </div>
+      <label>Correo de contacto
+        <input type="email" value={f.email} onChange={set('email')} />
+      </label>
+
+      <h3>Datos legales (salen en términos y privacidad)</h3>
+      <div className="adm-row">
+        <label>Nombre o razón social
+          <input value={f.legalname} onChange={set('legalname')} />
+        </label>
+        <label>Cédula o NIT
+          <input value={f.legalid} onChange={set('legalid')} />
         </label>
       </div>
 

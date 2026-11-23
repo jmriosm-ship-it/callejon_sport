@@ -183,7 +183,12 @@ export default function CartPage() {
                         onChange={(e) => setForm({ ...form, accept: e.target.checked })}
                         aria-invalid={shown('accept') ? 'true' : undefined}
                       />
-                      <span>Autorizo el uso de mis datos para gestionar este pedido y acepto los términos y la política de privacidad.</span>
+                      <span>
+                        Autorizo el uso de mis datos para gestionar este pedido y acepto los{' '}
+                        <a href="#/politicas/terminos" target="_blank" rel="noreferrer">términos</a>, la{' '}
+                        <a href="#/politicas/privacidad" target="_blank" rel="noreferrer">política de privacidad</a> y la{' '}
+                        <a href="#/politicas/cambios" target="_blank" rel="noreferrer">política de cambios</a>.
+                      </span>
                     </label>
                     {shown('accept') && <p className="field__error" role="alert">{shown('accept')}</p>}
                   </div>

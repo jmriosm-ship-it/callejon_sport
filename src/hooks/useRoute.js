@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 const parse = () => {
   const simple = window.location.hash.match(/^#\/(admin|carrito)\/?$/)
   if (simple) return { name: simple[1], param: null }
+  const pol = window.location.hash.match(/^#\/politicas\/(terminos|privacidad|cookies|cambios)\/?$/)
+  if (pol) return { name: 'politicas', param: pol[1] }
   const m = window.location.hash.match(/^#\/(categoria|producto)\/(.+)$/)
   return m ? { name: m[1], param: decodeURIComponent(m[2]) } : { name: 'home', param: null }
 }

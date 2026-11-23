@@ -1,10 +1,17 @@
 // Datos editables de la tienda. Cambiá todo desde acá.
 
-// TODO: reemplazar con los datos reales
-export const WHATSAPP_NUMBER = '573000000000'
+export const WHATSAPP_NUMBER = '573161706977'
 export const INSTAGRAM_URL = 'https://instagram.com/callej0n_store'
-export const ADDRESS = 'Dirección del local (por confirmar)'
-export const HOURS = ['Lunes a sábado: por confirmar', 'Domingos: por confirmar']
+export const TIKTOK_URL = 'https://www.tiktok.com/@callejon.store'
+export const FACEBOOK_URL = '' // pendiente: link de la página de Facebook
+export const EMAIL = 'menzaovallez@gmail.com'
+export const LEGAL_NAME = 'David Santiago Menza Ovalles'
+export const LEGAL_ID = 'C.C. 1003828676'
+export const ADDRESS = 'Carrera 17 #15A-14 Sur, barrio Timanco 3.ª etapa, Neiva (Huila)'
+export const HOURS = [
+  'Lunes a sábado: 9:00 a.m. a 12:00 m. y 2:00 p.m. a 8:30 p.m.',
+  'Domingos y festivos: 9:00 a.m. a 4:00 p.m.',
+]
 
 export const wa = (text) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
@@ -51,17 +58,17 @@ export const STEPS = [
 ]
 
 export const SHIPPING = [
-  'Transportadora: a elección del cliente',
-  'Tiempo de entrega: según la transportadora',
-  'Costo del envío: según la ubicación',
+  'Transportadora: Interrapidísimo, DHL o la que tú prefieras',
+  'Tiempo de entrega: según la transportadora y la ciudad',
+  'Costo del envío: según el destino',
+  'Pago: antes de enviar tu pedido',
 ]
 
 // TODO: confirmar métodos de pago reales
 export const PAYMENTS = [
-  'Nequi: por confirmar',
-  'Daviplata: por confirmar',
-  'Transferencia bancaria: por confirmar',
-  'Pago contra entrega (por confirmar)',
+  'Nequi: te enviamos el número por WhatsApp',
+  'Bancolombia: te enviamos los datos por WhatsApp',
+  'Daviplata: te enviamos el número por WhatsApp',
 ]
 
 // Recorte de la foto del local que representa cada categoría (placeholder hasta tener fotos por categoría)
@@ -87,4 +94,4 @@ export const CHAT = [
 
 // TODO: poné acá la dirección tal como aparece en Google Maps (ej: "Calle 10 #5-20, Ciudad, Colombia").
 // Mientras esté vacío, la sección Visítanos muestra un mapa de ejemplo.
-export const MAPS_QUERY = ''
+export const MAPS_QUERY = 'Carrera 17 #15 A-14 Sur, Timanco 3 etapa, Neiva, Huila, Colombia'

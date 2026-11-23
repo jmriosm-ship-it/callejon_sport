@@ -19,6 +19,7 @@ import WhatsAppButton from './components/WhatsAppButton'
 import Catalog from './components/Catalog'
 import ProductPage from './components/ProductPage'
 import CartPage from './components/CartPage'
+import Legal from './components/Legal'
 
 // Pruebas de diseño (solo con ?lab=...), cargadas aparte para no pesar en la página
 const Lab = lazy(() => import('./lab/Lab'))
@@ -64,6 +65,7 @@ function Shell() {
         {route.name === 'categoria' && <Catalog category={route.param} />}
         {route.name === 'producto' && <ProductPage key={route.param} id={route.param} />}
         {route.name === 'carrito' && <CartPage />}
+        {route.name === 'politicas' && <Legal slug={route.param} />}
         {route.name === 'home' && <Home />}
       </main>
       <Footer />

@@ -1,5 +1,5 @@
 // Datos base de la tienda: categorías y ajustes iniciales (sin prendas; esas se crean en el panel).
-import { CATEGORY_PHOTOS, CONJUNTOS, HOURS, INSTAGRAM_URL, MAPS_QUERY, PAYMENTS, SHIPPING, WHATSAPP_NUMBER, ADDRESS } from '../data/config'
+import { CATEGORY_PHOTOS, CONJUNTOS, HOURS, INSTAGRAM_URL, MAPS_QUERY, PAYMENTS, SHIPPING, WHATSAPP_NUMBER, ADDRESS, TIKTOK_URL, FACEBOOK_URL, EMAIL, LEGAL_NAME, LEGAL_ID } from '../data/config'
 
 export const CONJUNTOS_CAT = 'Conjuntos'
 
@@ -21,6 +21,11 @@ export function seed() {
     settings: {
       whatsapp: WHATSAPP_NUMBER,
       instagram: INSTAGRAM_URL,
+      tiktok: TIKTOK_URL,
+      facebook: FACEBOOK_URL,
+      email: EMAIL,
+      legalname: LEGAL_NAME,
+      legalid: LEGAL_ID,
       address: ADDRESS,
       hours: HOURS,
       maps: MAPS_QUERY,
